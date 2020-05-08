@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>8-Digit Unique Random Number</title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+
+	function genRandomNo(){	// Recursive function to generate Unique Random no.
+	var randomNum=Math.random().toString().slice(2,10); // slice the genrated Radom number with 8 digits
+	var randomNumArr=randomNum.split(""); //
+	var flag8=true;
+	for(let index=0;index<randomNumArr.length;index++){
+		for(let innerIndex=index+1;innerIndex<randomNumArr.length;innerIndex++){
+			if(randomNumArr[index]==randomNumArr[innerIndex]){   // check for duplication of digit
+				flag8=false;
+				break;
+			}
+		}
+	}
+	if(flag8==false){   // yet to generate 8-Digit Random number
+		genRandomNo();
+	}
+	else{	// 8-Digit Random number generated
+		document.getElementById("randomNoID").innerHTML="<p style='font-size:30px;'>Generated 8-Digit Unique Random No.:  "+randomNum+"</p>";
+	}
+}
+</script>
+</head>
+<body>
+	<button onclick="genRandomNo()">Generate a New Random Number</button >
+	<div id="randomNoID">
+	</div>
+</body>
+</html>
